@@ -1,12 +1,15 @@
-file <- "TCGA_breast_cancer_LumA_vs_Basal_PAM50.tsv"
+#This is my exapm;e
+
+
+file <- "TCGA_breast_cancer_LumA_vs_Basal_PAM50.tsv" #variable type: string
 first10 <- c('NAT1','BIRC5','BAG1','BCL2','BLVRA','CCNB1','CCNE1','CDC6','CDC20','CDH3')
 nfold <- 3
 
-header <- scan(file, nlines = 1, sep="\t", what = character())
-data <- read.table(file, skip = 2, header = FALSE, sep = "\t", quote = "", check.names=FALSE)
+header <- scan(file, nlines = 1, sep="\t", what = character()) #In the csv, rows are genes, and columns are samples
+data <- read.table(file, skip = 2, header = FALSE, sep = "\t", quote = "", check.names=FALSE)#skip first 2 lines,
 names(data) <- header
 
-header2 <- scan(file, skip = 1, nlines = 1, sep="\t", what = character())
+header2 <- scan(file, skip = 1, nlines = 1, sep="\t", what = character()) #read the line of "class"
 
 LumA <- data[data$sample_id %in% first10,header2=='Luminal A']
 Basal <- data[data$sample_id %in% first10,header2=='Basal-like']
